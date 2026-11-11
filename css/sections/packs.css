@@ -1,0 +1,62 @@
+/* ==========================================================================
+   sections/packs.css
+   Cards de precio (desde js/data/packs.js) con tilt 3D y brillo que sigue
+   al cursor. La card destacada tiene borde degradé animado.
+   ========================================================================== */
+.packs__head { display: grid; justify-items: center; gap: 1.25rem; }
+.packs__grid { display: grid; gap: 1.25rem; align-items: stretch; }
+/* Cada card va envuelta en un div (para la animación de entrada) */
+.packs__grid > div { display: flex; }
+.packs__grid > div > .pack { flex: 1; }
+.pack {
+  --mx: 50%; --my: 0%;
+  position: relative; display: flex; flex-direction: column;
+  padding: clamp(1.6rem, 3vw, 2.25rem);
+  background: var(--negro-2); border: 1px solid var(--linea);
+  border-radius: var(--r-xl);
+  transition: transform 0.5s var(--ease-out), border-color 0.4s;
+}
+/* Brillo que sigue al cursor (posición en --mx / --my, la setea pricing.js) */
+.pack::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255, 154, 60, 0.14), transparent 45%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.pack:hover::before { opacity: 1; }
+.pack__name { font-family: var(--font-titulo); font-weight: 900; font-size: var(--fs-lg); letter-spacing: 0.06em; text-transform: uppercase; }
+.pack__tagline { color: var(--gris); margin-top: 0.25rem; }
+.pack__price { margin: 1.5rem 0 0.25rem; display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.35rem; }
+.pack__amount { font-family: var(--font-titulo); font-weight: 900; font-size: clamp(2.2rem, 1.8rem + 1.6vw, 3rem); color: var(--naranja); letter-spacing: -0.03em; line-height: 1; }
+.pack__period { color: var(--gris); font-weight: 600; }
+.pack__extra { color: var(--blanco); font-size: var(--fs-sm); opacity: 0.85; min-height: 1.6em; }
+.pack__list { margin: 1.5rem 0; display: grid; gap: 0.7rem; align-content: start; flex: 1; }
+.pack__list li { display: flex; gap: 0.65rem; align-items: flex-start; font-size: var(--fs-sm); }
+.pack__list svg { flex: none; width: 18px; height: 18px; margin-top: 2px; color: var(--naranja); }
+.pack__bonus {
+  margin-bottom: 1.5rem; padding: 0.8rem 1rem; border-radius: var(--r-md);
+  border: 1px dashed rgba(255, 107, 44, 0.5); background: rgba(255, 107, 44, 0.06);
+  font-size: var(--fs-sm); font-weight: 600;
+}
+.pack__bonus b { color: var(--naranja); }
+
+/* Card destacada: borde con degradé cónico que gira */
+.pack--featured {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--negro-2), var(--negro-2)) padding-box,
+    conic-gradient(from var(--ang), var(--naranja), var(--naranja-2), rgba(255, 107, 44, 0.08), var(--naranja-2), var(--naranja)) border-box;
+  animation: angRotate 4s linear infinite;
+  box-shadow: 0 30px 80px -30px rgba(255, 107, 44, 0.45);
+}
+.pack__star { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
+.packs__notes { margin-top: 2.5rem; display: grid; gap: 0.75rem; justify-items: center; text-align: center; color: var(--gris); font-size: var(--fs-sm); }
+.packs__notes strong { color: var(--blanco); }
+
+@media (min-width: 980px) {
+  .packs__grid { grid-template-columns: 1fr 1.12fr 1fr; align-items: center; }
+  .pack--featured { padding-block: 2.75rem; }
+}
+@media (max-width: 979px) {
+  .packs__grid { max-width: 520px; margin-inline: auto; }
+  .packs__grid > div:has(.pack--featured) { margin-top: 1rem; }
+}

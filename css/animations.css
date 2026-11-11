@@ -1,0 +1,96 @@
+/* ==========================================================================
+   animations.css
+   Keyframes y clases de animación. Las animaciones con scroll las maneja
+   GSAP (ver js/modules), acá van las de CSS puro y los estados iniciales.
+   ========================================================================== */
+
+/* Giro continuo (texto del botón flotante, bordes con degradé) */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Flecha del logo: sube levemente en loop */
+@keyframes arrowFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+/* Brillo pulsante de la flecha */
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(255, 107, 44, 0.5)); }
+  50% { filter: drop-shadow(0 0 22px rgba(255, 154, 60, 0.95)); }
+}
+
+/* Cinta infinita (marquee) */
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Indicador de scroll: punto que baja */
+@keyframes scrollDot {
+  0% { transform: translateY(0); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
+
+/* Badge "Precios de lanzamiento" */
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 44, 0.55); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 107, 44, 0); }
+}
+@keyframes dotBlink { 50% { opacity: 0.3; } }
+
+/* Código subiendo dentro de las pantallas vacías */
+@keyframes codeRise {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+/* Captura en loop (showreel sin video) */
+@keyframes shotLoop {
+  0%, 8% { transform: translateY(0); }
+  92%, 100% { transform: translateY(calc(-1 * var(--dist, 0px))); }
+}
+
+/* Borde con degradé que gira (card destacada y foto) */
+@property --ang {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes angRotate { to { --ang: 360deg; } }
+
+/* Entrada de pasos del quiz */
+@keyframes stepIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.85) translateY(20px); }
+  60% { opacity: 1; transform: scale(1.03); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Estados iniciales para animaciones con JS.
+   Solo se aplican si JS cargó (html.js) y el usuario NO pidió menos movimiento,
+   así si algo falla el contenido sigue visible.
+   -------------------------------------------------------------------------- */
+html.js.motion [data-reveal] { opacity: 0; transform: translateY(40px); }
+
+/* Palabras / letras divididas por split.js */
+.split-word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.split-inner { display: inline-block; will-change: transform; }
+
+/* --------------------------------------------------------------------------
+   prefers-reduced-motion: apagamos animaciones pesadas y loops
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee__track { transform: none !important; }
+}
+
+/* Sin movimiento: la captura del showreel queda quieta arriba */
+@media (prefers-reduced-motion: reduce) {
+  .is-looping .scrollshot { animation: none !important; transform: none !important; }
+}

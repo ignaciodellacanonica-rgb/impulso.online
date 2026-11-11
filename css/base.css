@@ -1,0 +1,107 @@
+/* ==========================================================================
+   base.css
+   Reset moderno + estilos generales (tipografía, links, contenedor, títulos).
+   ========================================================================== */
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; }
+img, svg, video, canvas, picture { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; padding: 0; }
+p, h1, h2, h3, h4 { overflow-wrap: break-word; }
+
+/* Lenis maneja el scroll suave; estas reglas son las que recomienda */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ---- Documento ---- */
+body {
+  background: var(--negro);
+  color: var(--blanco);
+  font-family: var(--font-texto);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+/* Mientras carga el preloader, bloqueamos el scroll */
+body.is-loading { overflow: hidden; }
+
+::selection { background: var(--naranja); color: var(--negro); }
+
+/* Foco visible para navegación por teclado (accesibilidad) */
+:focus-visible {
+  outline: 2px solid var(--naranja-2);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Link "saltar al contenido" (solo visible con teclado) */
+.skip-link {
+  position: absolute; left: var(--sp-4); top: -100px;
+  background: var(--naranja); color: var(--negro);
+  padding: var(--sp-2) var(--sp-4); border-radius: var(--r-sm);
+  font-weight: 700; z-index: 200;
+}
+.skip-link:focus { top: var(--sp-4); }
+
+/* Texto solo para lectores de pantalla */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---- Layout ---- */
+.container {
+  width: 100%;
+  max-width: calc(var(--max) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section { padding-block: var(--seccion); position: relative; }
+
+/* ---- Tipografía ---- */
+h1, h2, h3, h4 {
+  font-family: var(--font-titulo);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.section-title { font-size: var(--fs-2xl); font-weight: 900; }
+.section-sub { color: var(--gris); font-size: var(--fs-md); margin-top: var(--sp-4); max-width: 46ch; }
+.section-head { margin-bottom: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
+.section-head--center { text-align: center; }
+.section-head--center .section-sub { margin-inline: auto; }
+
+/* Rótulo chico arriba de los títulos, estilo código */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-family: var(--font-code); font-size: var(--fs-xs);
+  color: var(--gris); text-transform: lowercase; letter-spacing: 0.04em;
+  margin-bottom: var(--sp-4);
+}
+.eyebrow::before { content: "//"; color: var(--naranja); }
+
+/* Palabras clave destacadas en naranja */
+.hl { color: var(--naranja); }
+.hl-grad {
+  background: var(--grad-naranja);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+
+/* Fondo de código tenue reutilizable (recurso gráfico de marca) */
+.code-bg {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  font-family: var(--font-code); font-size: 13px; line-height: 1.7;
+  color: rgba(245, 245, 247, 0.06); white-space: pre; filter: blur(1px);
+  user-select: none;
+}
+
+/* Cursor nativo oculto solo cuando el cursor personalizado está activo */
+html.has-cursor, html.has-cursor a, html.has-cursor button { cursor: none; }

@@ -1,0 +1,9 @@
+# Configuración de Netlify: sitio estático, sin build.
+[build]
+  publish = "."
+
+# Cache largo para imágenes; HTML/CSS/JS siempre frescos al actualizar
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

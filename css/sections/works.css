@@ -1,0 +1,45 @@
+/* ==========================================================================
+   sections/works.css
+   Grilla de trabajos (cards generadas desde js/data/projects.js) y modal.
+   ========================================================================== */
+.works__grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem); }
+.work { display: block; width: 100%; text-align: left; }
+.work__media {
+  position: relative; padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1.25rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.75rem);
+  border-radius: var(--r-xl); background: var(--negro-2); border: 1px solid var(--linea);
+  overflow: hidden; transition: border-color 0.4s;
+}
+/* Brillo naranja de fondo al pasar el mouse */
+.work__media::before {
+  content: ""; position: absolute; inset: auto -20% -60% -20%; height: 80%;
+  background: radial-gradient(ellipse at center, rgba(255, 107, 44, 0.22), transparent 65%);
+  opacity: 0; transition: opacity 0.5s;
+}
+.work:hover .work__media, .work:focus-visible .work__media { border-color: var(--linea-2); }
+.work:hover .work__media::before, .work:focus-visible .work__media::before { opacity: 1; }
+.work:hover .mockup, .work:focus-visible .mockup { transform: translateY(-10px); }
+.work__info { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-top: 1.25rem; padding-inline: 0.25rem; }
+.work__name { font-size: var(--fs-lg); font-weight: 900; }
+.work__cat { display: block; margin-top: 0.35rem; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris); }
+.work__arrow {
+  flex: none; width: 48px; height: 48px; border-radius: 50%;
+  display: grid; place-items: center; border: 1px solid var(--linea-2);
+  transition: background-color 0.3s, transform 0.4s var(--ease-out), border-color 0.3s, color 0.3s;
+}
+.work__arrow svg { width: 18px; height: 18px; }
+.work:hover .work__arrow, .work:focus-visible .work__arrow { background: var(--naranja); border-color: var(--naranja); color: var(--negro); transform: rotate(45deg); }
+.work--empty .work__name { color: var(--gris); }
+
+/* Contenido del modal del proyecto */
+.project { display: grid; gap: clamp(1.5rem, 4vw, 3rem); }
+.project__mock { padding-top: 2.75rem; }
+.project__cat { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--naranja); }
+.project__name { font-size: var(--fs-xl); font-weight: 900; margin: 0.5rem 0 1.25rem; }
+.project__block { margin-top: 1.25rem; }
+.project__block h3 { font-size: var(--fs-sm); font-family: var(--font-code); font-weight: 400; color: var(--gris); margin-bottom: 0.4rem; }
+.project__block p { color: var(--blanco); opacity: 0.88; }
+.project__actions { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.btn[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
+
+@media (min-width: 820px) { .works__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .project { grid-template-columns: 1.4fr 1fr; align-items: center; } .project__mock { padding-top: 0; } }

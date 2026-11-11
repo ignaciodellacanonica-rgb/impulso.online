@@ -1,0 +1,78 @@
+/* ==========================================================================
+   variables.css
+   Tokens de diseño: colores, tipografías, espaciados, radios y tiempos.
+   Cambiá un valor acá y se actualiza en todo el sitio.
+   Proporción de marca: 70% negro · 20% blanco · 10% naranja.
+   ========================================================================== */
+
+:root {
+  /* ---- Colores de marca ---- */
+  --negro: #0B0F1A;      /* fondo principal */
+  --negro-2: #121826;    /* cards y bloques elevados */
+  --negro-3: #1A2233;    /* bordes / hover sobre cards */
+  --blanco: #F5F5F7;     /* texto principal */
+  --gris: #8A8F9C;       /* textos secundarios */
+  --gris-2: #5B6170;     /* textos terciarios, líneas */
+  --naranja: #FF6B2C;    /* SOLO lo importante: CTAs, precios, palabras clave */
+  --naranja-2: #FF9A3C;  /* degradés y brillos */
+
+  /* Degradé naranja reutilizable */
+  --grad-naranja: linear-gradient(135deg, var(--naranja) 0%, var(--naranja-2) 100%);
+  /* Líneas sutiles */
+  --linea: rgba(245, 245, 247, 0.08);
+  --linea-2: rgba(245, 245, 247, 0.16);
+
+  /* ---- Tipografías ---- */
+  --font-titulo: "Montserrat", system-ui, sans-serif;
+  --font-texto: "Inter", system-ui, sans-serif;
+  --font-code: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Escala fluida (mobile-first, crece con el ancho de pantalla) */
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
+  --fs-lg: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
+  --fs-xl: clamp(1.75rem, 1.2rem + 2.4vw, 3.25rem);
+  --fs-2xl: clamp(2.25rem, 1.4rem + 4vw, 4.75rem);
+  --fs-3xl: clamp(2.6rem, 1.4rem + 5.6vw, 6.5rem);
+
+  /* ---- Espaciados ---- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+  --seccion: clamp(4.5rem, 3rem + 7vw, 9rem); /* padding vertical de cada sección */
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem); /* margen lateral */
+  --max: 1240px;                                /* ancho máximo del contenido */
+
+  /* ---- Radios ---- */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+  --r-full: 999px;
+
+  /* ---- Sombras y brillos ---- */
+  --sombra: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  --brillo-naranja: 0 0 40px rgba(255, 107, 44, 0.45);
+
+  /* ---- Movimiento ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-rapido: 0.25s;
+  --t-medio: 0.5s;
+
+  /* ---- Capas (z-index) ---- */
+  --z-header: 50;
+  --z-flotante: 60;
+  --z-menu: 70;
+  --z-modal: 90;
+  --z-cursor: 100;
+  --z-preloader: 110;
+}

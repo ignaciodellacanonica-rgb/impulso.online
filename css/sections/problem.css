@@ -1,0 +1,27 @@
+/* ==========================================================================
+   sections/problem.css
+   "¿Tu negocio tiene Instagram pero no vende?" + 3 cards de dolores.
+   ========================================================================== */
+.problem__cards { display: grid; gap: 1rem; }
+.pain {
+  position: relative; overflow: hidden;
+  background: var(--negro-2); border: 1px solid var(--linea);
+  border-radius: var(--r-lg); padding: clamp(1.5rem, 3vw, 2.25rem);
+  transition: border-color 0.4s, transform 0.5s var(--ease-out);
+}
+.pain:hover { border-color: rgba(255, 107, 44, 0.4); transform: translateY(-4px); }
+.pain__num { position: absolute; top: 1.25rem; right: 1.5rem; font-family: var(--font-code); font-size: var(--fs-xs); color: var(--gris-2); }
+.pain__icon {
+  width: 56px; height: 56px; border-radius: var(--r-md);
+  display: grid; place-items: center; margin-bottom: 1.5rem;
+  background: rgba(255, 107, 44, 0.1); color: var(--naranja);
+}
+.pain__icon svg { width: 28px; height: 28px; }
+.pain__text { font-family: var(--font-titulo); font-weight: 800; font-size: var(--fs-lg); line-height: 1.2; }
+.problem__close {
+  margin-top: clamp(3rem, 6vw, 5rem); text-align: center;
+  display: grid; justify-items: center; gap: 1.75rem;
+}
+.problem__close p { font-family: var(--font-titulo); font-weight: 800; font-size: var(--fs-xl); line-height: 1.1; max-width: 20ch; }
+.problem__close p span { color: var(--gris); }
+@media (min-width: 820px) { .problem__cards { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; } }

@@ -1,0 +1,36 @@
+/* ==========================================================================
+   sections/showreel.css
+   Bloque que se expande con el scroll (GSAP ScrollTrigger + scrub).
+   Muestra el video si existe; si no, el mockup de Einar en loop.
+   ========================================================================== */
+.showreel { padding-block: 0; }
+.showreel__pin { height: 100svh; display: grid; place-items: center; overflow: hidden; }
+.showreel__frame {
+  position: relative; width: 100%; height: 100%;
+  background: radial-gradient(ellipse at 50% 30%, #1d2638, var(--negro-2) 70%);
+  overflow: hidden;
+  /* Estado inicial "chico": GSAP lo anima hasta inset(0) */
+  clip-path: inset(14% 8% round 32px);
+}
+/* Sin animaciones: queda fijo, con bordes redondeados */
+html:not(.motion) .showreel__frame { clip-path: inset(4% var(--gutter) round 32px); }
+.showreel__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* El mockup se apoya abajo y se achica según el alto disponible, así nunca
+   lo tapa el título */
+.showreel__stage { position: absolute; inset: 0; display: grid; justify-items: center; align-items: end; padding: 0 6% 6svh; }
+.showreel__stage .mockup { width: min(100%, 980px, calc((100svh - 300px) * 1.5)); }
+.showreel__shade {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(11, 15, 26, 0.9) 0%, transparent 38%, transparent 75%, rgba(11, 15, 26, 0.6));
+}
+.showreel__title {
+  position: absolute; left: 0; right: 0; top: 19%; z-index: 2; text-align: center; padding-inline: var(--gutter);
+  font-size: var(--fs-2xl); font-weight: 900;
+}
+/* Celular: el mockup va centrado debajo del título */
+@media (max-width: 819px) {
+  .showreel__stage { align-items: start; padding-top: 36svh; }
+}
+@media (min-width: 820px) {
+  .showreel__title { top: 17%; }
+}

@@ -1,0 +1,37 @@
+/* ==========================================================================
+   sections/quiz.css
+   Recomendador de pack: 3 preguntas, barra de progreso y resultado.
+   ========================================================================== */
+.quiz {
+  max-width: 760px; margin-inline: auto;
+  background: var(--negro-2); border: 1px solid var(--linea); border-radius: var(--r-xl);
+  padding: clamp(1.5rem, 4vw, 3rem); position: relative; overflow: hidden;
+}
+.quiz__progress { height: 6px; border-radius: 6px; background: var(--linea); overflow: hidden; }
+.quiz__bar { height: 100%; width: 0; background: var(--grad-naranja); border-radius: inherit; transition: width 0.6s var(--ease-out); }
+.quiz__meta { display: flex; justify-content: space-between; margin-top: 0.75rem; font-family: var(--font-code); font-size: var(--fs-xs); color: var(--gris); }
+.quiz__body { margin-top: 1.75rem; min-height: 240px; }
+.quiz__step { animation: stepIn 0.5s var(--ease-out); }
+.quiz__q { font-size: var(--fs-lg); font-weight: 900; margin-bottom: 1.5rem; }
+.quiz__q:focus { outline: none; }
+.quiz__options { display: grid; gap: 0.75rem; }
+.quiz__opt {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  width: 100%; text-align: left;
+  padding: 1.05rem 1.25rem; border-radius: var(--r-md);
+  background: var(--negro); border: 1.5px solid var(--linea-2);
+  font-weight: 600; transition: border-color 0.25s, transform 0.25s var(--ease-out);
+}
+.quiz__opt::after { content: "→"; color: var(--gris); transition: transform 0.3s var(--ease-out), color 0.3s; }
+.quiz__opt:hover, .quiz__opt:focus-visible { border-color: var(--naranja); transform: translateX(4px); }
+.quiz__opt:hover::after, .quiz__opt:focus-visible::after { color: var(--naranja); transform: translateX(4px); }
+.quiz__back { margin-top: 1.25rem; color: var(--gris); font-size: var(--fs-sm); }
+.quiz__back:hover { color: var(--blanco); }
+.quiz__result { text-align: center; animation: popIn 0.7s var(--ease-out); }
+.quiz__result-label { font-family: var(--font-code); font-size: var(--fs-xs); color: var(--gris); }
+.quiz__result .pack { margin: 2rem auto 1.5rem; max-width: 420px; text-align: left; }
+.quiz__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+@media (min-width: 640px) {
+  .quiz__options--2 { grid-template-columns: repeat(2, 1fr); }
+  .quiz__options--3 { grid-template-columns: repeat(3, 1fr); }
+}

@@ -1,0 +1,21 @@
+/* ==========================================================================
+   sections/preloader.css
+   Pantalla negra inicial (~1,5 s): "Somos impulso.online" letra por letra
+   y la flecha naranja que sube antes de revelar el sitio.
+   ========================================================================== */
+.preloader {
+  position: fixed; inset: 0; z-index: var(--z-preloader);
+  background: var(--negro);
+  display: grid; place-items: center;
+}
+.preloader__inner { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+.preloader__arrow { width: 44px; height: 54px; overflow: visible; }
+.preloader__text {
+  font-family: var(--font-titulo); font-weight: 900;
+  font-size: clamp(1.4rem, 1rem + 2.4vw, 2.6rem); letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.preloader__text .ch { display: inline-block; opacity: 0; transform: translateY(0.4em); }
+.preloader__text .ch--hl { color: var(--naranja); }
+/* Si no hay JS, el preloader no debe tapar nada */
+html:not(.js) .preloader { display: none; }
